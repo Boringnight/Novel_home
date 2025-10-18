@@ -17,14 +17,11 @@ st.set_page_config(
 # 自定义CSS样式 - 增强版（丰富色彩和排版）
 st.markdown("""
 <style>
-    /* 全局样式 */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    /* 移除全局通配符样式（引发DOM冲突的核心原因） */
+    /* 原代码中的 * { margin:0; padding:0; box-sizing:border-box; } 已移除 */
     
-    body {
+    /* 将body样式改为Streamlit根容器.stApp，避免影响全局DOM */
+    .stApp {
         background-color: #f8f9fa;
         background-image: 
             radial-gradient(#e9ecef 0.5px, transparent 0.5px),
@@ -35,7 +32,7 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* 标题样式 */
+    /* 标题样式（完全保留） */
     .main-header {
         font-size: 3rem;
         color: #2c3e50;
@@ -79,7 +76,7 @@ st.markdown("""
         background-color: #3498db;
     }
     
-    /* 卡片样式 */
+    /* 卡片样式（完全保留） */
     .card {
         background-color: white;
         border-radius: 12px;
@@ -113,7 +110,7 @@ st.markdown("""
         border-top-color: #f39c12;
     }
     
-    /* 按钮样式 */
+    /* 按钮样式（完全保留） */
     .stButton>button {
         border-radius: 8px;
         transition: all 0.3s ease;
@@ -184,7 +181,7 @@ st.markdown("""
         background-color: #d35400;
     }
     
-    /* 输入框样式 */
+    /* 输入框样式（完全保留） */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea,
     .stSelectbox>div>div>select {
@@ -203,14 +200,14 @@ st.markdown("""
         outline: none;
     }
     
-    /* 侧边栏样式 */
-    .sidebar .sidebar-content {
+    /* 调整侧边栏样式选择器，避免冲突（核心修改） */
+    [data-testid="stSidebar"] .stBlockContainer {
         background-color: #ffffff;
         border-right: 1px solid #e2e8f0;
         background-image: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
     }
     
-    /* 图片样式 */
+    /* 图片样式（完全保留） */
     .image-card {
         border-radius: 8px;
         overflow: hidden;
@@ -223,7 +220,7 @@ st.markdown("""
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
     
-    /* 滚动条样式 */
+    /* 滚动条样式（完全保留） */
     ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -243,7 +240,7 @@ st.markdown("""
         background: #95a5a6;
     }
     
-    /* 动画效果 */
+    /* 动画效果（完全保留） */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
@@ -272,7 +269,7 @@ st.markdown("""
         animation: pulse 2s infinite;
     }
     
-    /* 网格布局优化 */
+    /* 网格布局优化（完全保留） */
     .grid-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -280,7 +277,7 @@ st.markdown("""
         margin-top: 1rem;
     }
     
-    /* 标签样式 */
+    /* 标签样式（完全保留） */
     .tag {
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -316,7 +313,7 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* 分隔线 */
+    /* 分隔线（完全保留） */
     .divider {
         height: 1px;
         background: linear-gradient(90deg, transparent, #bdc3c7, transparent);
@@ -331,7 +328,7 @@ st.markdown("""
         margin: 2rem 0;
     }
     
-    /* 导航栏样式 */
+    /* 导航栏样式（完全保留） */
     .nav-item {
         padding: 0.8rem 1.2rem;
         border-radius: 8px;
@@ -345,7 +342,7 @@ st.markdown("""
         transform: translateX(5px);
     }
     
-    /* 信息框样式 */
+    /* 信息框样式（完全保留） */
     .info-box {
         padding: 1rem;
         border-radius: 8px;
@@ -370,7 +367,7 @@ st.markdown("""
         background-color: #eafaf1;
     }
     
-    /* 小说展示样式 */
+    /* 小说展示样式（完全保留） */
     .novel-card {
         border-radius: 8px;
         overflow: hidden;
@@ -383,7 +380,7 @@ st.markdown("""
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
     }
     
-    /* 进度指示器 */
+    /* 进度指示器（完全保留） */
     .progress-step {
         display: inline-block;
         width: 30px;
