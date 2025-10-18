@@ -1,4 +1,4 @@
-pandas==2.3.3
-Pillow==12.0.0
-Requests==2.32.5
-streamlit==1.49.1
+pandas>=1.5.0,<3.0.0  # 宽松版本范围，避免兼容问题
+Pillow>=9.4.0,<12.0.0  # 符合Streamlit 1.49.1的依赖要求（<12）
+requests>=2.28.0,<3.0.0
+streamlit==1.49.1  # 保持你指定的Streamlit版本
